@@ -1,0 +1,53 @@
+{
+    "name": "@aurora-launcher/core",
+    "version": "1.0.0",
+    "description": "Base library for Aurora Launcher",
+    "type": "module",
+    "main": "./dist/index.js",
+    "types": "./dist/types/index.d.ts",
+    "scripts": {
+        "dev": "tsup --watch",
+        "build": "tsup",
+        "prettier": "prettier --write src",
+        "lint": "eslint",
+        "lint:fix": "eslint --fix",
+        "prepublishOnly": "pnpm run build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AuroraTeam/AuroraLauncher.git"
+    },
+    "author": "AuroraTeam",
+    "contributors": [
+        "JoCat (https://github.com/JoCat)"
+    ],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/AuroraTeam/AuroraLauncher/issues"
+    },
+    "homepage": "https://github.com/AuroraTeam/AuroraLauncher#readme",
+    "files": [
+        "dist",
+        "src"
+    ],
+    "devDependencies": {
+        "@eslint/js": "^9.35.0",
+        "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+        "@tsconfig/node22": "^22.0.2",
+        "@tsconfig/strictest": "^2.0.5",
+        "@types/node": "^22.18.3",
+        "eslint": "^9.35.0",
+        "eslint-config-prettier": "^10.1.8",
+        "globals": "^15.15.0",
+        "prettier": "^3.6.2",
+        "tsup": "^8.5.0",
+        "typescript": "^5.9.2",
+        "typescript-eslint": "^8.44.0"
+    },
+    "dependencies": {
+        "@hapi/bourne": "^3.0.0",
+        "node-stream-zip": "^1.15.0",
+        "p-map": "^7.0.3",
+        "undici": "^6.21.3"
+    }
+}

@@ -1,0 +1,92 @@
+{
+    "name": "@aurora-launcher/launcher",
+    "version": "0.0.5-dev.2",
+    "description": "Launcher for Minecraft",
+    "main": "out/main/index-obf.loader.js",
+    "private": true,
+    "scripts": {
+        "dev": "cross-env DEV=true electron-vite dev -w --entry ./out/main/index.js -- --dev",
+        "build": "electron-vite build && pnpm run obfuscator && pnpm run bytenode && esbuild ./script/electron-build.ts --bundle --log-level=error --loader:.pem=text --platform=node --packages=external --format=esm --outdir=./script/ --out-extension:.js=.mjs && node ./script/electron-build.mjs",
+        "start": "electron-vite preview --entry ./out/main/index.js",
+        "clean": "rimraf out dist",
+        "prettier": "prettier --config .prettierrc.json --write src",
+        "typecheck": "tsc --noEmit",
+        "lint": "eslint",
+        "lint:fix": "eslint --fix",
+        "pack": "electron-builder --dir",
+        "release": "esbuild ./script/upload-release.ts --bundle --log-level=error --loader:.pem=text --platform=node --packages=external --format=esm --outdir=./script/ --out-extension:.js=.mjs && node ./script/upload-release.mjs",
+        "obfuscator": "javascript-obfuscator out/main/index.js --output out/main/index-obf.js --split-strings true --split-strings-chunk-length 8",
+        "bytenode": "bytenode -c out/main/index-obf.js -e -l --compress",
+        "test": "vitest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AuroraTeam/Launcher.git"
+    },
+    "author": "AuroraTeam",
+    "contributors": [
+        "JoCat (https://github.com/JoCat)"
+    ],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/AuroraTeam/Launcher/issues"
+    },
+    "homepage": "https://github.com/AuroraTeam/Launcher#readme",
+    "devDependencies": {
+        "@eslint/js": "^9.18.0",
+        "@types/node": "^22.10.7",
+        "@types/react": "^19.0.7",
+        "@types/react-dom": "^19.0.3",
+        "@types/semver": "^7.5.8",
+        "@types/ws": "^8.5.13",
+        "cross-env": "^7.0.3",
+        "electron": "34.0.2",
+        "electron-builder": "^25.1.8",
+        "electron-extension-installer": "^1.2.0",
+        "electron-vite": "^3.1.0",
+        "eslint": "^9.18.0",
+        "eslint-plugin-react": "^7.37.4",
+        "globals": "^15.14.0",
+        "javascript-obfuscator": "^4.1.1",
+        "prettier": "^3.4.2",
+        "prettier-plugin-import-sort": "^0.0.7",
+        "rimraf": "^6.0.1",
+        "sass": "^1.83.4",
+        "typescript": "^5.7.3",
+        "typescript-eslint": "^8.20.0",
+        "vite": "^6.3.2",
+        "vitest": "^3.0.4",
+        "yaml": "^2.7.0"
+    },
+    "dependencies": {
+        "@aurora-launcher/api": "workspace:^",
+        "@aurora-launcher/core": "workspace:^",
+        "@freshgum/typedi": "^0.7.2",
+        "@kostya-main/discord-rpc": "^1.2.1",
+        "bytenode": "^1.5.6",
+        "chokidar": "^4.0.3",
+        "electron-store": "^10.0.0",
+        "electron-updater": "^6.3.9",
+        "i18next": "^24.2.2",
+        "i18next-browser-languagedetector": "^8.0.2",
+        "i18next-resources-to-backend": "^1.2.1",
+        "jotai": "^2.11.0",
+        "minestat-es": "^2.2.5",
+        "node-stream-zip": "^1.15.0",
+        "p-map": "^7.0.3",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "react-i18next": "^15.4.0",
+        "react-router-dom": "^7.1.1",
+        "semver": "^7.6.3",
+        "skinview3d": "^3.1.0",
+        "undici": "^6.21.3",
+        "uuid": "^11.0.5"
+    },
+    "importSort": {
+        ".tsx, .ts, .mjs, .js": {
+            "style": "module",
+            "parser": "typescript"
+        }
+    }
+}
